@@ -17,6 +17,14 @@
 
 #include "simulate/8008.h"
 
+static const char *const CC_Flags[] = 
+{
+  "C",     // Carry
+  "P",     // Even Parity
+  "Z",     // Zero
+  "S",     // Sign
+};
+
 static int stop_running = 0;
 
 static void handle_signal(int sig)
@@ -49,20 +57,25 @@ struct _simulate *simulate_init_8008(struct _memory *memory)
   simulate->step_mode = 0;
   simulate->show = 1;       // Show simulation
   simulate->auto_run = 0;   // Will this program stop on a ret from main
+
   return simulate;
 }
 
 void simulate_push_8008(struct _simulate *simulate, uint32_t value)
 {
-  //struct _simulate_8008 *simulate_8008 =
-  //  (struct _simulate_8008 *)simulate->context;
+  struct _simulate_8008 *simulate_8008 =
+    (struct _simulate_8008 *)simulate->context;
+
+  memory_write_m(simulate->memory, simulate_8008->reg_sp--, (value) & 0xff);
 
 }
 
 int simulate_set_reg_8008(struct _simulate *simulate, char *reg_string, uint32_t value)
 {
-  //struct _simulate_8008 *simulate_8008 =
-  //  (struct _simulate_8008 *)simulate->context;
+  struct _simulate_8008 *simulate_8008 =
+    (struct _simulate_8008 *)simulate->context;
+
+  while (*reg_string == ' ') { ++reg_string; }
 
   return 0;
 }
