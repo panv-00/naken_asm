@@ -17,6 +17,15 @@
 
 #include "simulate/8008.h"
 
+#define REG_A   simulate_8008->reg[0]
+#define REG_B   simulate_stm8->reg[1]
+#define REG_C   simulate_stm8->reg[2]
+#define REG_D   simulate_stm8->reg[3]
+#define REG_E   simulate_stm8->reg[4]
+#define REG_H   simulate_stm8->reg[5]
+#define REG_L   simulate_stm8->reg[6]
+
+
 static const char *const CC_Flags[] = 
 {
   "C",     // Carry
