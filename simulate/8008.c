@@ -66,7 +66,7 @@ void simulate_push_8008(struct _simulate *simulate, uint32_t value)
   struct _simulate_8008 *simulate_8008 =
     (struct _simulate_8008 *)simulate->context;
 
-  memory_write_m(simulate->memory, simulate_8008->reg_sp--, (value) & 0xff);
+  memory_write_m(simulate->memory, simulate_8008->sp--, (value) & 0xff);
 
 }
 
